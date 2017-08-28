@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/objects/player/player.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+
+radius = 0.4
+height = 1.0
+
+[sub_resource type="CylinderMesh" id=2]
+
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.6
+radial_segments = 12
+rings = 1
+
+[node name="player" type="KinematicBody"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 200.0
+mouse_sensitivity = Vector2( 0.3, 0.1 )
+
+[node name="collision" type="CollisionShape" parent="."]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+
+layers = 2
+material_override = null
+cast_shadow = 0
+extra_cull_margin = 0.0
+visible_in_all_rooms = false
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 2 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry" ]
+
+[node name="camera" type="Camera" parent="."]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.25, 0.5, 0 )
+projection = 0
+fov = 65.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = true
+cull_mask = 1048573
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler/tracking = 0
+_sections_unfolded = [ "Transform" ]
+
+[node name="cam2" type="Spatial" parent="."]
+
+transform = Transform( 1, 0, 3.55271e-15, 0, 1, -8.88178e-16, 0, 0, 1, 9.53674e-07, -1.19209e-07, 2.84217e-14 )
+
+[node name="camera2" type="Camera" parent="cam2"]
+
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -5, 1.75, -2.84217e-14 )
+projection = 0
+fov = 65.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = false
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler/tracking = 0
+_sections_unfolded = [ "Transform" ]
+
+
